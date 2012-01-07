@@ -6,5 +6,5 @@ es/
 *.iml
 *.ipr
 *.iws
-*/target/
+target/
 .idea
