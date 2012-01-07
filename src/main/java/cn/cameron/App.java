@@ -18,7 +18,18 @@ public class App {
     private final static Encoder encoder = new Encoder();
 
     public static void main(String[] args) {
-        File rootPath = new File("H:\\BlackBerry\\music");
+        if (args.length ==0) {
+            System.out.println("Please specify path!");
+            return;
+        }
+         System.out.println(args.length);
+        File rootPath = new File(args[0]);
+
+        if (!rootPath.exists()) {
+            System.out.println("Path: "+ args[0] +" doesn't exist!");
+            return;
+        }
+
         System.out.println("Starting generating...");
         doGenerate(rootPath);
         System.out.println("Done!");
