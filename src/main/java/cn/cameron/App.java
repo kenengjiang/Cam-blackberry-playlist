@@ -18,15 +18,15 @@ public class App {
     private final static Encoder encoder = new Encoder();
 
     public static void main(String[] args) {
-        if (args.length ==0) {
+        if (args.length == 0) {
             System.out.println("Please specify path!");
             return;
         }
-         System.out.println(args.length);
+        System.out.println(args.length);
         File rootPath = new File(args[0]);
 
         if (!rootPath.exists()) {
-            System.out.println("Path: "+ args[0] +" doesn't exist!");
+            System.out.println("Path: " + args[0] + " doesn't exist!");
             return;
         }
 
@@ -161,7 +161,11 @@ public class App {
     }
 
     public static String formatSongPathForRoot(String song, String folderName) {
-        String formattedSong = song.replaceFirst("./", "/");
+        if (song.startsWith("#EXT")) {
+            return "";
+        }
+
+        String formattedSong = song.replaceFirst("./", "");
         formattedSong = "." + slashOrBackSlash + folderName + slashOrBackSlash + formattedSong + "\r\n";
         return encoder.toUtf8String(formattedSong);
     }
